@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bhavana & Venkatesh Wedding</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(to bottom, #0b1026, #1c1340);
+        color: white;
+        overflow-x: hidden;
+      }
+
+      /* Floating Hearts */
+      .heart {
+        position: fixed;
+        bottom: -10px;
+        color: #ff6fae;
+        font-size: 20px;
+        animation: floatUp 8s linear infinite;
+        opacity: 0.8;
+      }
+
+      @keyframes floatUp {
+        from {
+          transform: translateY(0) scale(1);
+          opacity: 0.7;
+        }
+        to {
+          transform: translateY(-110vh) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* HERO */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: url("https://cbeditz.com/photo/30514/hindu-wedding-marriage-background-hd-wallpaper")
+
+          center/cover;
+        position: relative;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-family: "Great Vibes", cursive;
+        font-size: 90px;
+        color: #ffd1ec;
+        text-shadow: 0 0 20px pink;
+      }
+
+      .hero h2 {
+        margin-top: 20px;
+        font-weight: 300;
+        letter-spacing: 4px;
+      }
+
+      .section {
+        padding: 100px 10%;
+        text-align: center;
+      }
+
+      /* Section Titles */
+      .section h2 {
+        font-family: "Great Vibes", cursive;
+        margin-bottom: 20px;
+        color: #ffffff;
+        font-size: 70px;
+        color: #fff; /* Text color should be light, matching the glow color */
+        text-align: center;
+        /* Multiple shadows stacked to create depth */
+        text-shadow: 0 0 5px #fff, /* White inner glow */ 0 0 5px #fff,
+          0 0 15px #d300ea, /* Blue outer glow */ 0 0 20px #b000e6,
+          0 0 25px #5100e6, 0 0 30px #c700e6, 0 0 35px #c700e6;
+      }
+
+      .section p {
+        max-width: 700px;
+        margin: auto;
+        opacity: 0.8;
+      }
+
+      /* Image Cards */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255, 150, 220, 0.4);
+        border: 3px solid rgba(255, 200, 230, 0.6);
+        animation: glow 4s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 15px pink;
+        }
+        to {
+          box-shadow: 0 0 40px hotpink;
+        }
+      }
+
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.6s;
+      }
+
+      .card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Haldi Section */
+      .haldi {
+        background: linear-gradient(to bottom, #ffde7d, #ffb703);
+        color: #402400;
+      }
+
+      /* Family Section */
+      .family {
+        background: linear-gradient(to bottom, #3a1c71, #d76d77, #ffaf7b);
+      }
+
+      footer {
+        padding: 40px;
+        text-align: center;
+        opacity: 0.7;
+      }
+
+      /* Moon */
+      .moon {
+        position: absolute;
+        top: 40px;
+        right: 60px;
+        width: 120px;
+        height: 120px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 40px white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="moon"> </div>
+
+    <div class="hero">
+      <div class="hero-content">
+        <h2>The Marriage of</h2>
+        <h1>Bhavana & Venkatesh</h1>
+        <h2>4th April 2024</h2>
+        <p>Two hearts. One love.</p>
+      </div>
+    </div>
+
+    <!-- HALDI -->
+    <section class="section haldi">
+      <h2>Haldi Ceremony</h2>
+      <p>A celebration of turmeric, tradition & golden love</p>
+
+      <div class="gallery">
+        <div class="card"><img src="wed images/haldi1.jpeg" /></div>
+        <div class="card"><img src="wed images/haldi2.jpeg" /></div>
+      </div>
+    </section>
+
+    <!-- WEDDING MOMENTS -->
+    <section class="section">
+      <h2>Wedding Moments</h2>
+      <p>Every smile, every glance, forever captured</p>
+
+      <div class="gallery">
+        <div class="card"><img src="wed images/wed1.jpeg" /></div>
+        <div class="card"><img src="wed images/wed2.jpeg" /></div>
+        <div class="card"><img src="wed images/wed3.jpeg" /></div>
+      </div>
+    </section>
+
+    <!-- FAMILY -->
+    <section class="section family">
+      <h2>Our Family Moment</h2>
+      <p>Where love began & where it grows</p>
+
+      <div class="gallery">
+        <div class="card">
+          <img src="wed images/family.jpeg" />
+        </div>
+      </div>
+    </section>
+
+    <footer>Made with ❤️ for Bhavana & Venkatesh</footer>
+
+    <script>
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 25 + 10 + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 8000);
+      }
+
+      setInterval(createHeart, 300);
+    </script>
+  </body>
+</html>
