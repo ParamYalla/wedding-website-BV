@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bhavana & Venkatesh Wedding</title>
 
     <link
@@ -17,206 +18,200 @@
       }
 
       body {
-        background: linear-gradient(to bottom, #0b1026, #1c1340);
+        background: #0b1026;
         color: white;
         overflow-x: hidden;
+        line-height: 1.6;
       }
 
-      /* Floating Hearts */
+      /* Floating Hearts - Optimized */
       .heart {
         position: fixed;
         bottom: -10px;
         color: #ff6fae;
-        font-size: 20px;
-        animation: floatUp 8s linear infinite;
+        pointer-events: none;
+        z-index: 10;
+        animation: floatUp 6s linear forwards;
         opacity: 0.8;
       }
 
       @keyframes floatUp {
-        from {
-          transform: translateY(0) scale(1);
-          opacity: 0.7;
-        }
-        to {
-          transform: translateY(-110vh) scale(1.5);
-          opacity: 0;
-        }
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
       }
 
-      /* HERO */
+      /* HERO SECTION - Updated with local image path */
       .hero {
         height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        background: url("https://cbeditz.com/photo/30514/hindu-wedding-marriage-background-hd-wallpaper")
-
-          center/cover;
+        /* CHANGE 'hero-bg.jpeg' to your actual background filename */
+        background: url("wed images/bg.jpg") center/cover no-repeat;
         position: relative;
+        padding: 20px;
       }
 
       .hero::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.55);
+        background: rgba(0, 0, 0, 0.55); /* Dark overlay to make text pop */
       }
 
       .hero-content {
         position: relative;
         z-index: 2;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        padding: 40px 20px;
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       }
 
       .hero h1 {
         font-family: "Great Vibes", cursive;
-        font-size: 90px;
+        font-size: clamp(3.2rem, 16vw, 5.5rem);
         color: #ffd1ec;
-        text-shadow: 0 0 20px pink;
+        text-shadow: 0 0 20px rgba(255, 192, 203, 0.8);
+        margin-bottom: 10px;
       }
 
       .hero h2 {
-        margin-top: 20px;
         font-weight: 300;
-        letter-spacing: 4px;
+        font-size: clamp(0.9rem, 4vw, 1.3rem);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #eee;
       }
 
+      /* GENERAL SECTIONS */
       .section {
-        padding: 100px 10%;
+        padding: 80px 6%;
         text-align: center;
       }
 
-      /* Section Titles */
       .section h2 {
         font-family: "Great Vibes", cursive;
-        margin-bottom: 20px;
-        color: #ffffff;
-        font-size: 70px;
-        color: #fff; /* Text color should be light, matching the glow color */
-        text-align: center;
-        /* Multiple shadows stacked to create depth */
-        text-shadow: 0 0 5px #fff, /* White inner glow */ 0 0 5px #fff,
-          0 0 15px #d300ea, /* Blue outer glow */ 0 0 20px #b000e6,
-          0 0 25px #5100e6, 0 0 30px #c700e6, 0 0 35px #c700e6;
+        margin-bottom: 25px;
+        font-size: clamp(2.8rem, 12vw, 4.8rem);
+        color: #fff;
+        text-shadow: 2px 2px 10px rgba(176, 0, 230, 0.6);
       }
 
       .section p {
-        max-width: 700px;
-        margin: auto;
-        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+        opacity: 0.9;
+        font-size: 1.1rem;
+        font-weight: 300;
       }
 
-      /* Image Cards */
+      /* RESPONSIVE GALLERY */
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-top: 50px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        width: 100%;
       }
 
       .card {
         position: relative;
         overflow: hidden;
         border-radius: 20px;
-        box-shadow: 0 0 30px rgba(255, 150, 220, 0.4);
-        border: 3px solid rgba(255, 200, 230, 0.6);
-        animation: glow 4s infinite alternate;
-      }
-
-      @keyframes glow {
-        from {
-          box-shadow: 0 0 15px pink;
-        }
-        to {
-          box-shadow: 0 0 40px hotpink;
-        }
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+        background: #1a1a2e; /* Placeholder color while loading */
       }
 
       .card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: 0.6s;
+        transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1);
+        display: block;
       }
 
-      .card:hover img {
-        transform: scale(1.1);
-      }
-
-      /* Haldi Section */
+      /* MOBILE THEMES */
       .haldi {
-        background: linear-gradient(to bottom, #ffde7d, #ffb703);
-        color: #402400;
+        background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+        color: #3d2b00;
       }
 
-      /* Family Section */
+      .haldi h2 {
+        color: #3d2b00;
+        text-shadow: none;
+      }
+
       .family {
-        background: linear-gradient(to bottom, #3a1c71, #d76d77, #ffaf7b);
+        background: linear-gradient(to bottom, #240b36, #c31432);
       }
 
       footer {
-        padding: 40px;
+        padding: 50px 20px;
         text-align: center;
-        opacity: 0.7;
+        background: #050816;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-top: 1px solid rgba(255,255,255,0.05);
       }
 
-      /* Moon */
-      .moon {
-        position: absolute;
-        top: 40px;
-        right: 60px;
-        width: 120px;
-        height: 120px;
-        background: #fff;
-        border-radius: 50%;
-        box-shadow: 0 0 40px white;
+      /* Smartphone Specific Overrides */
+      @media (max-width: 600px) {
+        .section { padding: 60px 20px; }
+        .gallery { grid-template-columns: 1fr; }
+       /* Slightly shorter for mobile scroll */
+        .hero-content { padding: 30px 15px; width: 90%; }
       }
     </style>
   </head>
 
   <body>
-    <div class="moon"> </div>
 
     <div class="hero">
       <div class="hero-content">
         <h2>The Marriage of</h2>
         <h1>Bhavana & Venkatesh</h1>
         <h2>4th April 2024</h2>
-        <p>Two hearts. One love.</p>
+        <p style="margin-top:15px; font-weight: 400; letter-spacing: 1px;">Two hearts. One love.</p>
       </div>
     </div>
 
-    <!-- HALDI -->
     <section class="section haldi">
       <h2>Haldi Ceremony</h2>
       <p>A celebration of turmeric, tradition & golden love</p>
 
       <div class="gallery">
-        <div class="card"><img src="wed images/haldi1.jpeg" /></div>
-        <div class="card"><img src="wed images/haldi2.jpeg" /></div>
+        <div class="card"><img src="wed images/haldi1.jpeg" alt="Haldi 1" /></div>
+        <div class="card"><img src="wed images/haldi2.jpeg" alt="Haldi 2" /></div>
       </div>
     </section>
 
-    <!-- WEDDING MOMENTS -->
     <section class="section">
       <h2>Wedding Moments</h2>
       <p>Every smile, every glance, forever captured</p>
 
       <div class="gallery">
-        <div class="card"><img src="wed images/wed1.jpeg" /></div>
-        <div class="card"><img src="wed images/wed2.jpeg" /></div>
-        <div class="card"><img src="wed images/wed3.jpeg" /></div>
+        <div class="card"><img src="wed images/wed1.jpeg" alt="Wedding 1" /></div>
+        <div class="card"><img src="wed images/wed2.jpeg" alt="Wedding 2" /></div>
+        <div class="card"><img src="wed images/wed3.jpeg" alt="Wedding 3" /></div>
       </div>
     </section>
 
-    <!-- FAMILY -->
     <section class="section family">
       <h2>Our Family Moment</h2>
       <p>Where love began & where it grows</p>
 
-      <div class="gallery">
+      <div class="gallery" style="max-width: 450px; margin: 0 auto;">
         <div class="card">
-          <img src="wed images/family.jpeg" />
+          <img src="wed images/family.jpeg" alt="Family" />
         </div>
       </div>
     </section>
@@ -224,21 +219,27 @@
     <footer>Made with ❤️ for Bhavana & Venkatesh</footer>
 
     <script>
+      // Fix for mobile 100vh issue (address bar jumping)
+      function setVh() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      window.addEventListener('resize', setVh);
+      setVh();
+
+      // Smooth Heart Animation
       function createHeart() {
         const heart = document.createElement("div");
         heart.classList.add("heart");
         heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 25 + 10 + "px";
+        heart.style.left = Math.random() * 90 + "vw";
+        heart.style.fontSize = Math.random() * 15 + 12 + "px";
         document.body.appendChild(heart);
 
-        setTimeout(() => {
-          heart.remove();
-        }, 8000);
+        setTimeout(() => { heart.remove(); }, 6000);
       }
 
-      setInterval(createHeart, 300);
+      setInterval(createHeart, 450);
     </script>
   </body>
 </html>
-
