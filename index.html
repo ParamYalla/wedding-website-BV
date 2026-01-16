@@ -3,244 +3,407 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bhavana & Venkatesh Wedding</title>
+    <title>Bhavana & Venkatesh | A Wedding Journey</title>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap"
       rel="stylesheet" />
 
     <style>
+      :root {
+        --primary-pink: #ffd1ec;
+        --deep-blue: #0b1026;
+        --haldi-grad: linear-gradient(135deg, #fdfcfb 0%, #f5d100 100%);
+        --wedding-grad: linear-gradient(180deg, #240b36 0%, #0b1026 100%);
+        --family-grad: linear-gradient(135deg, #cf0202 0%, #0e00a3 100%);
+        --white: #ffffff;
+        --radius: 60px;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: "Montserrat", sans-serif;
+        -webkit-tap-highlight-color: transparent;
       }
 
       body {
-        background: #0b1026;
-        color: white;
+        background: #000;
+        color: var(--white);
         overflow-x: hidden;
-        line-height: 1.6;
+        scroll-behavior: smooth;
       }
 
-      /* Floating Hearts - Optimized */
-      .heart {
+      /* Floating Music Toggle */
+      .music-control {
         position: fixed;
-        bottom: -10px;
-        color: #ff6fae;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+      }
+      .music-control:active { transform: scale(0.9); }
+      .music-icon { font-size: 20px; }
+
+      /* Floating Hearts */
+      #heart-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         pointer-events: none;
-        z-index: 10;
-        animation: floatUp 6s linear forwards;
-        opacity: 0.8;
+        z-index: 99;
+      }
+
+      .heart {
+        position: absolute;
+        bottom: -20px;
+        color: #ff6fae;
+        opacity: 0.6;
+        animation: floatUp 8s linear forwards;
       }
 
       @keyframes floatUp {
-        0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-        100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+        100% { transform: translateY(-110vh) rotate(360deg) scale(1.5); opacity: 0; }
       }
 
-      /* HERO SECTION - Updated with local image path */
-      .hero {
+      /* HERO SECTION */
+      .hero-section {
+        position: relative;
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        /* CHANGE 'hero-bg.jpeg' to your actual background filename */
-        background: url("wed images/bg.jpg") center/cover no-repeat;
-        position: relative;
-        padding: 20px;
+        overflow: hidden;
+        z-index: 1;
       }
 
-      .hero::after {
-        content: "";
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 130%;
+        background: url("wed images/bg.jpg") center/cover no-repeat;
+        z-index: -1;
+        will-change: transform;
+      }
+
+      .hero-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.55); /* Dark overlay to make text pop */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
       }
 
-      .hero-content {
+      .hero-box {
         position: relative;
         z-index: 2;
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(8px);
-        padding: 40px 20px;
-        border-radius: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        width: 100%;
-        max-width: 450px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-      }
-
-      .hero h1 {
-        font-family: "Great Vibes", cursive;
-        font-size: clamp(3.2rem, 16vw, 5.5rem);
-        color: #ffd1ec;
-        text-shadow: 0 0 20px rgba(255, 192, 203, 0.8);
-        margin-bottom: 10px;
-      }
-
-      .hero h2 {
-        font-weight: 300;
-        font-size: clamp(0.9rem, 4vw, 1.3rem);
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: #eee;
-      }
-
-      /* GENERAL SECTIONS */
-      .section {
-        padding: 80px 6%;
         text-align: center;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 60px 20px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        width: 90%;
+        max-width: 400px;
+        transition: transform 0.3s ease-out;
       }
 
-      .section h2 {
+      .hero-box h1 {
         font-family: "Great Vibes", cursive;
-        margin-bottom: 25px;
-        font-size: clamp(2.8rem, 12vw, 4.8rem);
-        color: #fff;
-        text-shadow: 2px 2px 10px rgba(176, 0, 230, 0.6);
+        font-size: clamp(3.5rem, 15vw, 5.5rem);
+        color: var(--primary-pink);
+        line-height: 1.2;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
 
-      .section p {
-        max-width: 600px;
-        margin: 0 auto 40px auto;
-        opacity: 0.9;
-        font-size: 1.1rem;
-        font-weight: 300;
-      }
-
-      /* RESPONSIVE GALLERY */
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-        width: 100%;
-      }
-
-      .card {
+      /* CONTENT SECTIONS */
+      .section-wrapper {
         position: relative;
-        overflow: hidden;
-        border-radius: 20px;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-        background: #1a1a2e; /* Placeholder color while loading */
+        z-index: 10;
+        margin-top: -10vh;
       }
 
-      .card img {
+      .content-section {
+        position: relative;
+        padding: 120px 5% 150px 5%;
+        border-radius: var(--radius) var(--radius) 0 0;
+        box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+
+      .section-title {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(3.5rem, 15vw, 6rem);
+        text-align: center;
+        margin-bottom: 80px;
+        position: relative;
+        z-index: 5;
+      }
+
+      /* PORTRAIT POLAROID GALLERY */
+      .portrait-gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 120px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .image-container {
         width: 100%;
-        height: 100%;
+        display: flex;
+        justify-content: center;
+        will-change: transform, opacity;
+      }
+
+      .polaroid-frame {
+        width: 90%;
+        background: white;
+        padding: 15px 15px 60px 15px;
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        transform: rotate(-2deg);
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .image-container:nth-child(even) .polaroid-frame { transform: rotate(3deg); }
+
+      .polaroid-frame img {
+        width: 100%;
+        aspect-ratio: 3/4;
         object-fit: cover;
-        transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1);
+        border-radius: 4px;
         display: block;
       }
 
-      /* MOBILE THEMES */
-      .haldi {
-        background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
-        color: #3d2b00;
-      }
+      /* SIDE DROP ANIMATION */
+      .side-float-left { transform: translateX(-80px) rotate(-10deg); opacity: 0; transition: all 1.5s cubic-bezier(0.2, 1, 0.3, 1); }
+      .side-float-right { transform: translateX(80px) rotate(10deg); opacity: 0; transition: all 1.5s cubic-bezier(0.2, 1, 0.3, 1); }
+      .active.side-float-left, .active.side-float-right { transform: translateX(0) rotate(0deg); opacity: 1; }
 
-      .haldi h2 {
-        color: #3d2b00;
-        text-shadow: none;
-      }
+      /* BACKGROUNDS */
+      .haldi-section { background: var(--haldi-grad); color: #402e00; }
+      .wedding-section { background: var(--wedding-grad); color: white; margin-top: -80px; }
+      .family-section { background: var(--family-grad); color: white; margin-top: -80px; padding-bottom: 200px; }
 
-      .family {
-        background: linear-gradient(to bottom, #240b36, #c31432);
-      }
-
+      /* FOOTER */
       footer {
-        padding: 50px 20px;
+        position: relative;
+        z-index: 20;
+        background: #000;
+        padding: 100px 20px;
         text-align: center;
-        background: #050816;
-        font-size: 0.85rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        border-top: 1px solid rgba(255,255,255,0.05);
+        border-radius: var(--radius) var(--radius) 0 0;
+        margin-top: -80px;
       }
 
-      /* Smartphone Specific Overrides */
+      .mouse-scroll {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+      }
+      .mouse-wheel {
+        width: 24px;
+        height: 40px;
+        border: 2px solid white;
+        border-radius: 12px;
+        position: relative;
+      }
+      .mouse-wheel::before {
+        content: "";
+        position: absolute;
+        width: 4px; height: 8px;
+        background: white;
+        left: 50%; transform: translateX(-50%);
+        top: 6px;
+        border-radius: 2px;
+        animation: scrollWheel 2s infinite;
+      }
+      @keyframes scrollWheel {
+        0% { transform: translate(-50%, 20px); opacity: 1; }
+        100% { transform: translate(-50%, 0); opacity: 0; }
+      }
+
       @media (max-width: 600px) {
-        .section { padding: 60px 20px; }
-        .gallery { grid-template-columns: 1fr; }
-       /* Slightly shorter for mobile scroll */
-        .hero-content { padding: 30px 15px; width: 90%; }
+        :root { --radius: 50px; }
+        .polaroid-frame { width: 95%; padding: 10px 10px 45px 10px; }
+        .portrait-gallery { gap: 80px; }
+        .music-control { bottom: 20px; right: 20px; width: 45px; height: 45px; }
       }
     </style>
   </head>
 
   <body>
+    <div id="heart-container"></div>
 
-    <div class="hero">
-      <div class="hero-content">
-        <h1>Bhavana <br> & <br> Venkatesh</h1>
-        <h2>01/04/2024</h2>
-        <p style="margin-top:15px; font-weight: 400; letter-spacing: 1px;">Two hearts. One love.</p>
+    <div class="music-control" onclick="toggleMusic()">
+      <span id="music-btn" class="music-icon">🔇</span>
+    </div>
+    <audio id="bgMusic" loop>
+      <source src="wed images/Sai_Abhyankkar_-_Aasa_Kooda__Music_Video____Thejo_Bharathwaj___Preity_Mukundhan___Sai_Smriti(128k).m4a" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="hero-section">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-box" id="heroBox">
+        <h1>Bhavana <br /> & <br /> Venkatesh</h1>
+        <p style="letter-spacing: 5px; font-weight: 300; margin-top: 15px">01.04.2024</p>
+        <br /><br />
+        <div class="mouse-scroll">
+          <div class="mouse-wheel"></div>
+        </div>
       </div>
     </div>
 
-    <section class="section haldi">
-      <h2>Haldi Ceremony</h2>
-      <p>A celebration of turmeric, tradition & golden love</p>
-
-      <div class="gallery">
-        <div class="card"><img src="wed images/haldi1.jpeg" alt="Haldi 1" /></div>
-        <div class="card"><img src="wed images/haldi2.jpeg" alt="Haldi 2" /></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Wedding Moments</h2>
-      <p>Every smile, every glance, forever captured</p>
-
-      <div class="gallery">
-        <div class="card"><img src="wed images/wed1.jpeg" alt="Wedding 1" /></div>
-        <div class="card"><img src="wed images/wed2.jpeg" alt="Wedding 2" /></div>
-        <div class="card"><img src="wed images/wed3.jpeg" alt="Wedding 3" /></div>
-      </div>
-    </section>
-
-    <section class="section family">
-      <h2>Our Family Moment</h2>
-      <p>Where love began & where it grows</p>
-
-      <div class="gallery" style="max-width: 450px; margin: 0 auto;">
-        <div class="card">
-          <img src="wed images/family.jpeg" alt="Family" />
+    <div class="section-wrapper">
+      <section class="content-section haldi-section">
+        <h2 class="section-title reveal-fade">Haldi</h2>
+        <h3 style="text-align: center; font-weight: 300; margin: 0 auto 60px auto; max-width: 800px; padding: 0 10px;">
+          The Haldi ceremony is a vibrant pre-wedding ritual where turmeric paste is applied for purification and good luck, symbolizing blessings and prosperity.
+        </h3>
+        <div class="portrait-gallery">
+          <div class="image-container side-float-left reveal">
+            <div class="polaroid-frame">
+              <img src="wed images/haldi1.jpeg" alt="Haldi Moment 1" />
+            </div>
+          </div>
+          <div class="image-container side-float-right reveal">
+            <div class="polaroid-frame">
+              <img src="wed images/haldi2.jpeg" alt="Haldi Moment 2" />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer>Made with ❤️ for Bhavana & Venkatesh</footer>
+      <section class="content-section wedding-section">
+        <h2 class="section-title reveal-fade">Wedding</h2>
+        <h3 style="text-align: center; font-weight: 300; margin-bottom: 60px">A Celebration of Love and Unity</h3>
+        <div class="portrait-gallery">
+          <div class="image-container side-float-left reveal">
+            <div class="polaroid-frame">
+              <img src="wed images/wed1.jpeg" alt="Wedding 1" />
+            </div>
+          </div>
+          <div class="image-container side-float-right reveal">
+            <div class="polaroid-frame">
+              <img src="wed images/wed2.jpeg" alt="Wedding 2" />
+            </div>
+          </div>
+          <div class="image-container side-float-left reveal">
+            <div class="polaroid-frame">
+              <img src="wed images/wed3.jpeg" alt="Wedding 3" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section family-section">
+        <h2 class="section-title reveal-fade">Our Roots</h2>
+        <div class="portrait-gallery">
+          <div class="image-container side-float-right reveal">
+            <div class="polaroid-frame" style="transform: rotate(0deg)">
+              <img src="wed images/family.jpeg" alt="Family Moment" style="aspect-ratio: 3/2" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <h3 style="font-family: 'Great Vibes'; font-size: 3rem; color: var(--primary-pink);">Thank You</h3>
+      <p style="margin-top: 10px; font-weight: 300; opacity: 0.6; letter-spacing: 1px;">FOR BEING PART OF OUR STORY</p>
+    </footer>
 
     <script>
-      // Fix for mobile 100vh issue (address bar jumping)
-      function setVh() {
+      // Music Toggle Logic
+      const audio = document.getElementById("bgMusic");
+      const musicBtn = document.getElementById("music-btn");
+
+      // Auto-play audio on page load
+      window.addEventListener("load", () => {
+        audio.play();
+        musicBtn.innerHTML = "🎵";
+      });
+
+      function toggleMusic() {
+        if (audio.paused) {
+          audio.play();
+          musicBtn.innerHTML = "🎵";
+        } else {
+          audio.pause();
+          musicBtn.innerHTML = "🔇";
+        }
+      }
+
+      // Precise Mobile Height
+      function refreshHeight() {
         let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
       }
-      window.addEventListener('resize', setVh);
-      setVh();
+      window.addEventListener("resize", refreshHeight);
+      refreshHeight();
 
-      // Smooth Heart Animation
-      function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 90 + "vw";
-        heart.style.fontSize = Math.random() * 15 + 12 + "px";
-        document.body.appendChild(heart);
+      // Pro Parallax Controller
+      const heroBg = document.getElementById("heroBg");
+      const heroBox = document.getElementById("heroBox");
 
-        setTimeout(() => { heart.remove(); }, 6000);
+      window.addEventListener("scroll", () => {
+        const scrollY = window.pageYOffset;
+        heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+        if (scrollY < window.innerHeight) {
+          heroBox.style.opacity = 1 - scrollY / 600;
+          heroBox.style.transform = `translateY(${-scrollY * 0.1}px)`;
+        }
+      });
+
+      // Side-float Observer
+      const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -10% 0px" };
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+      // Hearts
+      const container = document.getElementById("heart-container");
+      function spawnHeart() {
+        if (document.hidden) return;
+        const h = document.createElement("div");
+        h.classList.add("heart");
+        h.innerHTML = "❤️";
+        h.style.left = Math.random() * 95 + "vw";
+        h.style.fontSize = Math.random() * 15 + 15 + "px";
+        h.style.animationDuration = Math.random() * 3 + 5 + "s";
+        container.appendChild(h);
+        setTimeout(() => h.remove(), 8000);
       }
-
-      setInterval(createHeart, 450);
+      setInterval(spawnHeart, 700);
     </script>
   </body>
 </html>
-
-
